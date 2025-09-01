@@ -20,23 +20,23 @@
 ##  Arduino Sketch Example
 
 ```cpp
-const int LDR_PIN = A0;
-const int LIGHT_PIN = 8;
-const int THRESHOLD = 500; // Adjust as needed
+int LDR_VAR = 0;
 
-void setup() {
-  pinMode(LIGHT_PIN, OUTPUT);
+void setup()
+{
+  pinMode(A0, INPUT);
   Serial.begin(9600);
+  pinMode(10, OUTPUT);
 }
 
-void loop() {
-  int ldrValue = analogRead(LDR_PIN);
-  Serial.println(ldrValue);
-
-  if (ldrValue < THRESHOLD) {
-    digitalWrite(LIGHT_PIN, HIGH); // Turn ON
+void loop()
+{
+  LDR_VAR = analogRead(A0);
+  Serial.println(LDR_VAR);
+  if (LDR_VAR > 500) {
+    digitalWrite(10, LOW);
   } else {
-    digitalWrite(LIGHT_PIN, LOW);  // Turn OFF
+    digitalWrite(10, HIGH);
   }
-  delay(500);
+  delay(10); // Delay a little bit to improve simulation performance
 }
